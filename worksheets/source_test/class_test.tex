@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2021\_22}}
+\lfoot{COMS10014 - P\&C class test - Conor}
+
+\begin{document}
+
+\section*{Class test}
+
+\subsection*{short questions}
+
+\begin{enumerate}
+
+  %1
+\item A bag contains one red ball, 1000 blue balls and 1000 yellow balls; two balls are taken from the bag. What is the sample space?
+
+%2
+\item What is an event?
+
+%3
+\item Ireland is divided into four provinces: Munster, Leinster, Ulster and Connaught. Two provinces are selected at random; what is the event that both end in \lq{}ster\rq{} and what is the probability of this event?
+
+%4
+\item A sample space consists of the words \{stately, plump, buck, mulligan, came, from, the, stairhead\}. The event $A$ consists of all words with four or fewer letters. The event $B$ consists of all words ending in a vowel. What is $p(B)$ and $p(B|A)$?
+
+%5
+\item What is the \lq{}na\"{i}ve\rq{} aspect of the na\"{i}ve Bayes estimator?
+
+%6
+\item If $X$ is a random variable define the expected value of $X$?
+
+%7
+\item A shopkeeper says she has two new baby beagles to show you,
+but she doesn't know whether they're male, female, or one of each. You
+tell her that you want only a male, and she telephones the fellow
+who's giving them a bath. "Is at least one a male?" she asks
+him. "Yes!" she informs you with a smile. What is the probability that
+the other one is a male?  (This question is taken from Marilyn von
+Savant's Ask Marilyn column).
+
+%8
+\item A six sided dice is rolled ten times, what is the probability of getting exact three sixes?
+
+\end{enumerate}
+  
+\subsection*{long question}
+
+This question is about calculating probabilities in the context of the
+card game baccarat. In the game of baccarat the player and dealer are
+dealt cards; two initial and possibily a third. Each hand is given a
+score and, ultimately the hand with the highest score wins. The Ten,
+Jack, Queen and King are worth zero points, the Ace is worth one point
+and all the other cards have a value which corresponds to their face
+value; a seven is worth seven points for example. The value of a hand
+is worth the sum of the points in it, modulo ten; or put another way,
+it is equal to the last digit, so if a player has a King and a nine,
+the hand is worth nine points; if they have two nines, the hand is
+worth eight points since $9+9=18$ and eight is the final digit of 18.
+\begin{enumerate}
+  \item If a player is dealt two cards from a 52 card deck what is the chance of getting zero?
+  \item If the player is dealt two cards from a 52 card deck what is the chance of a getting eight or nine points?
+  \item If the player is dealt an eight or nine, what is the probability they have in fact a nine?
+\end{enumerate}
+
+\end{document}
