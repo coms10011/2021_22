@@ -1,0 +1,170 @@
+%ws7.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2021_22 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2021\_22}}
+\lfoot{COMS10014 - P\&C ws7 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 7 - outline solutions}
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+\item A distribution $x$ has the form
+\begin{equation}
+p(x)=\left\{\begin{array}{cc}x& 0\le x <1\\2-x& 1\le x<2\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the probability $x<1$; what is the probability $x<1.5$? What is the probability $0.5<x<1.5$?\\
+\\
+\\
+\textbf{Solution}: The first bit is easy since clearly half the probability mass is below one and the rest is above, so $P(x<1)=0.5$, the next is harder
+\begin{equation}
+  P(x<1.5)=\int_0^{1.5}p(x)dx
+\end{equation}
+Now $p(x)$ is a complicated function but we can split this up
+\begin{equation}
+  P(x<1.5)=\int_0^{1}p(x)dx+\int_1^{1.5}p(x)dx=0.5+\int_1^{1.5}(2-x)dx
+\end{equation}
+and now we can do the integral
+\begin{equation}
+  P(x<1.5)=0.5+\left(2x-\frac{1}{2}x^2\right)_1^{1.5}=0.5+0.375=0.875
+\end{equation}
+Similarly
+\begin{equation}
+  P(0.5<x<1.5)=\int_{0.5}^{1.5}p(x)dx=\int_{0.5}^{1}p(x)dx+\int_1^{1.5}p(x)dx
+\end{equation}
+and substituting in the mass function in each subinterval
+\begin{equation}
+  P(0.5<x<1.5)=\int_{0.5}^{1}xdx+\int_1^{1.5}(2-x)dx=\left.\frac{x^2}{2}\right]_{0.5}^1+0.375=0.75
+\end{equation}
+
+\item The distribution of tree heights in a pine tree forest is 
+\begin{equation}
+p(h)=\left\{\begin{array}{cc}0.3& 0\le h <2\\0.2& 2\le h<4\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the mean height of trees in the forest?
+\\ \\ \\
+\textbf{Solution}: So 
+\begin{equation}
+\mu =\langle H\rangle=\int_{-\infty}^\infty hf(h)=\int_{0}^2 {0.3h}dh+\int_2^4{0.2h}dh
+\end{equation}
+and
+\begin{equation}
+\int_{0}^2 {0.3h}dh=\left.0.3\frac{h^2}{2}\right|_0^2=0.6
+\end{equation}
+and
+\begin{equation}
+\int_{2}^4 {0.2h}dh=\left.0.2\frac{h^2}{2}\right|_2^4=0.2 (8-2)=1.2
+\end{equation}
+so $\mu=1.8$.
+
+
+\item Work out the mean and variance for the distribution
+  \begin{equation}
+    p(x)=\left\{\begin{array}{ll}2/a&x\in [-a,a]\\0&\mbox{otherwise}\end{array}\right.
+  \end{equation}
+\\ \\ \\
+\textbf{Solution}: So in this case
+\begin{equation}
+  \langle X\rangle =\int_{-\infty}^\infty xp(x)dx=\frac{2}{a}\int_{-a}^a xdx=0
+\end{equation}
+and
+\begin{equation}
+  \langle X^2\rangle =\int_{-\infty}^\infty x^2p(x)dx=\frac{2}{a}\int_{-a}^a x^2dx=\left.\frac{2x^3}{3a}\right]_{-a}^a=\frac{4a^2}{3}
+\end{equation}
+and here the variance is the same as the second moment because the mean is zero.
+  
+\item Another useful distribution is the exponential distribution:
+$$
+p(x)=\left\{\begin{array}{cc}\lambda e^{-\lambda x}& x\ge 0\\ 0&\mbox{otherwise}\end{array}\right.
+$$
+What is the probability $\mbox{Prob}(x_1 < x <x_2)$ where $x_1$ and $x_2$ are both positive.
+  \\ \\ \\ \textbf{Solution}: 
+\begin{equation}
+\mbox{Prob}(x_1 < x <x_2)=\lambda \int_{x_1}^{x_2} e^{-\lambda y}dy=-\left. e^{-\lambda y} \right]_{x_1}^{x_2}=e^{-\lambda x_1}-e^{-\lambda x_2}
+\end{equation}
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+Do these in the workshop if you have time.
+
+\begin{enumerate}
+
+\item By integrating, what is the mean of the exponential distribution?\\
+  \\
+  \\ \textbf{Solution}: So
+  \begin{equation}
+    <X>=\lambda\int_0^\infty xe^{-\lambda x}dx
+  \end{equation}
+  so this is an integration by parts with $u=x$ and $dv=\exp{(-\lambda x)}dx$ so
+  \begin{equation}
+    du=1
+  \end{equation}
+  and
+  \begin{equation}
+    v=-\frac{1}{\lambda}e^{-\lambda x}
+  \end{equation}
+  giving
+    \begin{equation}
+    <X>=\int_0^\infty e^{-\lambda x}dx=\frac{1}{\lambda}
+  \end{equation}
+
+\item Work out the mean of the exponential distribution by differenciating
+  $$1=Z=\int_0^{\infty} p(x)dx$$
+  \\ \\ \\ \textbf{Solution}: Well
+  \begin{equation}
+    1=\lambda\int_0^\infty e^{-\lambda x}dx
+  \end{equation}
+  and differentiate both sides with respect to $\lambda$ to get
+  \begin{equation}
+    0=\int_0^\infty e^{-\lambda x}dx-\lambda \int_0^\infty xe^{-\lambda x}dx
+  \end{equation}
+  so
+  \begin{equation}
+    \langle X\rangle=\frac{1}{\lambda}
+  \end{equation}
+
+\item What is the variance of the exponential distribution?
+  \\ \\ \\ \textbf{Solution}: So same again, using the formula for the mean
+  \begin{equation}
+    1=\lambda^2\int_0^\infty xe^{-\lambda x}dx
+  \end{equation}
+  and differentiate both sides with respect to $\lambda$ to get
+  \begin{equation}
+    0=2\lambda\int_0^\infty xe^{-\lambda x}dx-\lambda^2 \int_0^\infty x^2e^{-\lambda x}dx
+  \end{equation}
+  so
+  \begin{equation}
+    \langle X^2\rangle=\frac{2}{\lambda}
+  \end{equation}
+  and hence
+  \begin{equation}
+    \mbox{var}(X)=\frac{1}{\lambda}
+    \end{equation}
+\end{enumerate}
+
+\end{document}
+
