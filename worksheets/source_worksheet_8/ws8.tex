@@ -1,0 +1,181 @@
+%ws6.tex
+%notes for the course Mathematics for Computer Science A COMS10014
+%taught at the University of Bristol
+%2020_21 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\texttt{cs-uob.github.io/COMS10014/ and github.com/coms10011/2021\_22}}
+\lfoot{COMS10014 - P\&C ws8 - Conor}
+\begin{document}
+
+\section*{Probability and Combinatorics Worksheet 8}
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+\item \textbf{Expectation values - mean and variance}:
+The mean is
+  \begin{equation}
+    \mu=\langle X\rangle = \int_{-\infty}^\infty xp(x)dx
+  \end{equation}
+  and the variance is
+  \begin{equation}
+    \mbox{var}(X)=\langle (X-\mu)^2\rangle=\langle X^2\rangle-\mu^2
+  \end{equation}
+  and, of course
+  \begin{equation}
+    \langle X^2\rangle =\int_{-\infty}^\infty x^2p(x)dx
+  \end{equation}
+  
+\item \textbf{The Gau\ss{}ian distribution}:
+  \begin{equation}
+    p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+  \end{equation}
+  
+
+\item Working out \textbf{probabilities for the Gau\ss{}ian}:
+  \begin{equation}
+\mbox{Prob}(x_1<x<x_2)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
+  \end{equation}
+where
+\begin{equation}
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+\end{equation}
+The error function 
+\begin{equation}
+  \mbox{erf}\,(z)=\frac{1}{\sqrt{\pi}}\int_{-z}^ze^{-y^2}dy=\frac{2}{\sqrt{\pi}}\int_0^ze^{-y^2}dy
+\end{equation}
+goes from -1 to one, so $\mbox{erf}\,(-\infty)=-1$ and $\mbox{erf}\,(\infty)=1$.
+
+
+  
+\end{itemize}
+
+
+
+\subsection*{Questions}
+
+These are the questions you should make sure you work on in the workshop.
+
+\begin{enumerate}
+
+
+
+\item The length of human pregnancies from conception to birth
+  approximates a normal distribution with a mean of 266 days and a
+  standard deviation of 16 days.  What proportion of all pregnancies
+  will last between 240 and 270 days (roughly between 8 and 9 months)?
+  
+\item Starting from the expression for the mean
+  \begin{equation}
+    \mu=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^\infty xe^{-\frac{(x-\mu)^2}{2\sigma^2}}dx
+  \end{equation}
+  and differentiating with respect to $\mu$ show the Gau\ss{}ian
+  distribution has variance $\sigma^2$. This is a tricky question.
+
+\item The size of a standard croquet ball is 3 5/8
+  inches\footnote{Everything in croquet is measured in old timey
+    units}. The height of a croquet hoop is 3 3/4 inches. If a not
+  very good croquet-ball making machine makes croquet balls whose mean
+  matches the standard and with standard deviation 1/8 inch, what is
+  the chance it will make a ball too large to fit through the hoop?
+  You can write the solution in terms of the error function.
+
+ \item If $X$ and $Y$ are two independent random variables what is var$(X+Y)$?
+  
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+Do these in the workshop if you have time.
+
+\begin{enumerate}
+
+  
+\item This will look like a long question but it is almost all
+  background and the question is not too bad when you actually read
+  through it. In particle physics when a collider is being used to
+  find a new particle like the Higgs boson or the top squark
+  scientists don't detect the sought after particle directly since it
+  usually decays almost straight away, instead they detect the more
+  common particles that particle will decay into, for example, a Higgs
+  boson can decay in to two photons and these can be detected. Roughly
+  speaking scientists count these events. However, the whole situation
+  is very messy and there will always be some events even if the
+  particle doesn't exist at the energy being examined. The amount of
+  these background events will fluctuate from experiment to
+  experiment, typically like a Gau\ss{}ian. The scientific team is
+  allowed to claim they have discovered the particle if the number of
+  events they measure is more than five standard deviations above
+  what would be expected if the particle didn't exist. What is the
+  probability of this \lq{}discovery\rq{} happening by chance?
+
+  
+\item Australorp hens weigh on average 4kg with a standard deviation
+  0.25kg; in one farm australorps who weigh less than 3.5kg are fed
+  \textsl{patent chicken spicer}, a mixture of chalk, corn and
+  pepper. What fraction of these hens are fed patent chicken spicer?
+
+\item The Beta distribution for a random variable $X$ has non-zero probability for $x\in(0,1)$ and probability mass function
+  \begin{equation}
+    p(x)=\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+  \end{equation}
+  where $\alpha$ and $\beta$ are shape parameters and $B(\alpha,\beta)$ is the Beta function, a special function\footnote{Roughly speaking, in mathematics a special function is an integral or solution to a differential equation that could not, in the nineteenth century, be related to a function that had already been names, so instead it is given a name of its own} be defined as
+  \begin{equation}
+    B(\alpha,\beta)=\int_0^1 x^{\alpha-1}(1-x)^{\beta-1}
+  \end{equation}
+  and serves to normalize the distribution so $\int_0^1{p(x)dx} =1$. With some fiddling with the integrals and some integrating by parts you can show
+  \begin{equation}
+    B(\alpha,\beta)=B(\alpha+1,\beta)+B(\alpha,\beta+1)
+  \end{equation}
+  and from this it follows, again you don't need to show this, that
+  \begin{equation}
+    B(\alpha+1,\beta)=\frac{\alpha}{\alpha+\beta}B(\alpha,\beta)
+  \end{equation}
+  Find the mean of the Beta distribution. This is a hard question!
+
+\item This is going to be complicated but it introduces the concept of
+  a conjugate prior, so bear with me! It is a hard question, but
+  interesting, I think. You go to a casino, the Baysiana, and the slot
+  machines have a probability $x$ of paying out. You don't know this
+  probability because it varies from casino to casino, in fact as an
+  international gambler you have been to many casinos and you know
+  that the distribution of $x$ for casinos satisfies a Beta
+  distribution with some $\alpha$ and $\beta$ you have calculated from
+  your many casino visits. In other words your prior for the slot
+  machines at the Baysiana, before you play one, is
+  \begin{equation}
+    p(x)\sim \mbox{Beta}(\alpha,\beta)
+  \end{equation}
+  or
+  \begin{equation}
+    p(x)=\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+  \end{equation}
+  and $\alpha$ and $\beta$ describe your understanding of what $p$ is
+  for the Baysiana. Now you put a coin in and pull the lever, you win!
+  What is your posterior distribution for $x$?
+
+
+  
+  
+\end{enumerate}
+
+\end{document}
+
